@@ -1,0 +1,62 @@
+
+
+    while True:
+        print("\nВыберите действие:")
+        print("1. Добавить обувь")
+        print("2. Показать инвентарь")
+        print("3. Выход")
+
+        choice = input("Ваш выбор: ")
+
+        if choice == '1':
+            brand = input("Введите бренд: ")
+            model = input("Введите модель: ")
+            size = input("Введите размер: ")
+            price = input("Введите цену: ")
+
+            new_shoe = Shoe(brand, model, size, price)
+            store.add_shoe(new_shoe)
+
+        elif choice == '2':
+            store.display_inventory()
+
+        elif choice == '3':
+            print("Выход из программы.")
+            break
+
+        else:
+            print("Некорректный ввод, попробуйте снова.")
+
+
+if __name__ == "__main__":
+    main()class Shoe:
+    def __init__(self, brand, model, size, price):
+        self.brand = brand
+        self.model = model
+        self.size = size
+        self.price = price
+
+    def __str__(self):
+        return f"{self.brand} {self.model} - Размер: {self.size}, Цена: {self.price} руб."
+
+
+class ShoeStore:
+    def __init__(self):
+        self.inventory = []
+
+    def add_shoe(self, shoe):
+        self.inventory.append(shoe)
+        print(f"Добавлено: {shoe}")
+
+    def display_inventory(self):
+        if not self.inventory:
+            print("Инвентарь пуст.")
+        else:
+            print("Доступные модели обуви:")
+            for shoe in self.inventory:
+                print(shoe)
+
+
+def main():
+    store = ShoeStore()
+
